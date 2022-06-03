@@ -1,0 +1,43 @@
+   /// <summary>
+    /// Представляет настройки криптографических сервисов, которые используют platform interop.
+    /// </summary>
+    public sealed class NativeCryptoServiceSettings : StoreAwareCryptoServiceSettings
+    {
+        /// <summary>
+        /// Инициализирует экземпляр <see cref="NativeCryptoServiceSettings"/>.
+        /// </summary>
+        public NativeCryptoServiceSettings()
+        {
+            Id = "Native";
+        }
+
+        /// <summary>
+        /// Возвращает или задает признак того, что сервис для доступа к хранилищу сертификатов включен.
+        /// </summary>
+        public bool CertificateStoreServiceEnabled { get; set; }
+
+        /// <summary>
+        /// Возвращает или задает признак того, что сервис для шифрования и расшифровки данных включен.
+        /// </summary>
+        public bool EncryptDecryptServiceEnabled { get; set; }
+
+        /// <summary>
+        /// Возвращает или задает признак того, что сервис для работы с электронными подписями включен.
+        /// </summary>
+        public bool SignatureServiceEnabled { get; set; }
+    }
+
+
+    /// <summary>
+    /// Представляет настройки криптографических сервисов, которые знают о хранилищах сертификатов локального компьютера и текущего пользователя.
+    /// </summary>
+    public abstract class StoreAwareCryptoServiceSettings : CryptoServiceSettings
+    {
+        /// <summary>
+        /// Возвращает признак того, что нужно использовать хранилище сертификатов локального компьютера.
+        /// </summary>
+        /// <remarks>
+        /// Если это свойство установлено в <see langword="false"/>, то используется хранилище сертификатов текущего пользователя.
+        /// </remarks>
+        public bool UseLocalMachineStore { get; set; }
+    }

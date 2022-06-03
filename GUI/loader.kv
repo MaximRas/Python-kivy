@@ -1,0 +1,637 @@
+#:kivy 2.1.0
+<RoundedButton@Button>
+    background_color: (0,0,0,0)
+    background_normal: ''
+    #on_press: self.background_color = (0.0, 0.2, 0.4, 1.0)
+
+    canvas.before:
+        Color:
+            rgba: (48/255,84/255,150/255,1) if self.state=='normal' else (0,.7,.7,1)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [18]
+
+<Tab>:
+    check_box_innkpp: chk_inn_kpp
+    check_box_boxid: chk_boxid
+    id: header_tab
+    do_default_tab: False
+    tab_width: self.width *0.15
+    autosize: True
+#Connection tab
+    TabbedPanelItem:
+        text: 'Connection'
+        FloatLayout:
+        #REST connection part
+            Label:
+                canvas.after:
+                    Color:
+                        rgba: 0.1, 0.6, 0.6, 1
+                    Line:
+                        width: 3
+                        rectangle: self.x, self.y, self.width, self.height
+                size_hint:(0.1,0.05)
+                text: 'REST URL:'
+                pos_hint:{'center_x': 0.1, 'center_y': 0.9}
+
+                color: 0.5, 0.6, 0, 1
+                background_color: 0.5, 0.1, 0.6, 1
+            TextInput:
+                id: rest_connection
+                padding_y: [self.height / 2.0 - (self.line_height / 2.0)]
+                multiline:False
+                canvas.before:
+                    Color:
+                        rgba: .5, .5, .5, 1
+                    Line:
+                        width: 2
+                        rectangle: self.x, self.y, self.width, self.height
+                pos_hint: {'x': 0.2, 'y': 0.87}
+                size_hint: (0.5, 0.05)
+            Label:
+                pos_hint:{'center_x': 0.22, 'center_y': 0.85}
+                text: 'Login:'
+                color: 0.1, 0.8, 0.2, 1
+            TextInput:
+                id: rest_login
+                multiline:False
+                foreground_color: (0, 0, 0, 1)
+                canvas.after:
+                    Color:
+                        rgba: 0.1, 0, 0, 1
+                    Line:
+                        width: 1
+                        rectangle: self.x, self.y, self.width, self.height
+                pos_hint: {'x': 0.2, 'y': 0.77}
+
+                size_hint: (0.2, 0.04)
+            Label:
+                pos_hint:{'center_x': 0.48, 'center_y': 0.85}
+                text: 'Password:'
+                color: 0.1, 0.8, 0.2, 1
+            TextInput:
+                id: rest_password
+                multiline:False
+                foreground_color: (0, 0, 0, 1)
+                canvas.after:
+                    Color:
+                        rgba: 0.1, 0, 0, 1
+                    Line:
+                        width: 1
+                        rectangle: self.x, self.y, self.width, self.height
+                pos_hint: {'x': 0.45, 'y': 0.77}
+                size_hint: (0.2, 0.04)
+
+        #SOAP connection part
+            Label:
+                canvas.after:
+                    Color:
+                        rgba: 0.1, 0.6, 0.6, 1
+                    Line:
+                        width: 3
+                        rectangle: self.x, self.y, self.width, self.height
+                size_hint:(0.1,0.05)
+                pos_hint:{'center_x': 0.1, 'center_y': 0.7}
+                text: 'SOAP URL:'
+                color: 0.5, 0.6, 0, 1
+            TextInput:
+                id: soap_connection
+                multiline:False
+                padding_y: [self.height / 2.0 - (self.line_height / 2.0)]
+                canvas.before:
+                    Color:
+                        rgba: .5, .5, .5, 1
+                    Line:
+                        width: 2
+                        rectangle: self.x, self.y, self.width, self.height
+                pos_hint: {'x': 0.2, 'y': 0.67}
+                size_hint: (0.5, 0.05)
+
+            Label:
+                pos_hint:{'center_x': 0.22, 'center_y': 0.65}
+                text: 'APIkey:'
+                color: 0.1, 0.8, 0.2, 1
+            TextInput:
+                id: sopa_apikey
+                multiline:False
+                foreground_color: (0, 0, 0, 1)
+                canvas.after:
+                    Color:
+                        rgba: 0.1, 0, 0, 1
+                    Line:
+                        width: 1
+                        rectangle: self.x, self.y, self.width, self.height
+                pos_hint: {'x': 0.2, 'y': 0.57}
+                size_hint: (0.4, 0.04)
+
+            #Achive part
+            Label:
+                canvas.after:
+                    Color:
+                        rgba: 0.1, 0.6, 0.6, 1
+                    Line:
+                        width: 3
+                        rectangle: self.x, self.y, self.width, self.height
+                size_hint:(0.1,0.05)
+                pos_hint:{'center_x': 0.1, 'center_y': 0.5}
+                text: 'Archive URL:'
+                color: 0.5, 0.6, 0, 1
+            TextInput:
+                id: archive_connection
+                padding_y: [self.height / 2.0 - (self.line_height / 2.0)]
+                multiline:False
+                canvas.before:
+                    Color:
+                        rgba: .5, .5, .5, 1
+                    Line:
+                        width: 2
+                        rectangle: self.x, self.y, self.width, self.height
+                pos_hint: {'x': 0.2, 'y': 0.47}
+                size_hint: (0.5, 0.05)
+            Label:
+                pos_hint:{'center_x': 0.22, 'center_y': 0.45}
+                text: 'Login:'
+                color: 0.1, 0.8, 0.2, 1
+            TextInput:
+                id: archive_login
+                multiline:False
+                foreground_color: (0, 0, 0, 1)
+                canvas.after:
+                    Color:
+                        rgba: 0.1, 0, 0, 1
+                    Line:
+                        width: 1
+                        rectangle: self.x, self.y, self.width, self.height
+                pos_hint: {'x': 0.2, 'y': 0.37}
+                size_hint: (0.2, 0.04)
+            Label:
+                pos_hint:{'center_x': 0.48, 'center_y': 0.45}
+                text: 'Password:'
+                color: 0.1, 0.8, 0.2, 1
+            TextInput:
+                id: archive_password
+                multiline:False
+                foreground_color: (0, 0, 0, 1)
+                canvas.after:
+                    Color:
+                        rgba: 0.1, 0, 0, 1
+                    Line:
+                        width: 1
+                        rectangle: self.x, self.y, self.width, self.height
+                pos_hint: {'x': 0.45, 'y': 0.37}
+                size_hint: (0.2, 0.04)
+
+            #Crypto APi part
+            Label:
+                canvas.after:
+                    Color:
+                        rgba: 0.1, 0.6, 0.6, 1
+                    Line:
+                        width: 3
+                        rectangle: self.x, self.y, self.width, self.height
+                size_hint:(0.1,0.05)
+                pos_hint:{'center_x': 0.1, 'center_y': 0.3}
+                text: 'Crypto URL:'
+                color: 0.5, 0.6, 0, 1
+            TextInput:
+                id: crypto_connection
+                padding_y: [self.height / 2.0 - (self.line_height / 2.0)]
+                multiline:False
+                canvas.before:
+                    Color:
+                        rgba: .5, .5, .5, 1
+                    Line:
+                        width: 2
+                        rectangle: self.x, self.y, self.width, self.height
+                pos_hint: {'x': 0.2, 'y': 0.27}
+                size_hint: (0.5, 0.05)
+            Label:
+                pos_hint:{'center_x': 0.22, 'center_y': 0.25}
+                text: 'Login:'
+                color: 0.1, 0.8, 0.2, 1
+            TextInput:
+                id: crypto_login
+                multiline:False
+                foreground_color: (0, 0, 0, 1)
+                canvas.after:
+                    Color:
+                        rgba: 0.1, 0, 0, 1
+                    Line:
+                        width: 1
+                        rectangle: self.x, self.y, self.width, self.height
+                pos_hint: {'x': 0.2, 'y': 0.17}
+                size_hint: (0.2, 0.04)
+            Label:
+                pos_hint:{'center_x': 0.48, 'center_y': 0.25}
+                text: 'Password:'
+                color: 0.1, 0.8, 0.2, 1
+            TextInput:
+                id: crypto_password
+                multiline:False
+                foreground_color: (0, 0, 0, 1)
+                canvas.after:
+                    Color:
+                        rgba: 0.1, 0, 0, 1
+                    Line:
+                        width: 1
+                        rectangle: self.x, self.y, self.width, self.height
+                pos_hint: {'x': 0.45, 'y': 0.17}
+                size_hint: (0.2, 0.04)
+            RoundedButton:
+                text: 'Load config'
+                pos_hint: {'x':0.2, 'y': 0.08}
+                size_hint: (0.1, 0.06)
+                #on_press: root.load_config()
+            RoundedButton:
+                text: 'Save config'
+                pos_hint: {'x':0.33, 'y': 0.08}
+                size_hint: (0.1, 0.06)
+                #on_press: root.save_config()
+
+    # Create 2nd tab
+    TabbedPanelItem:
+        id: tab_two
+        text: 'Send documents'
+        FloatLayout:
+            id: layout
+            Label:
+                halign: 'left'
+                text_size: self.size
+                font_size: '20dp'
+                color: 0.2, 0.6, 0.1, 1
+                pos_hint: {'x': 0.02, 'y': 0.96}
+                size_hint:(0.15,0.05)
+                text: 'Тип API'
+            Spinner:
+                id: spinner_of_api
+                text:''
+                values:'REST', 'SOAP'
+                size_hint: None, None
+                size: 100, 44
+                pos_hint: {'x': 0.02, 'y': 0.9}
+            Label:
+                canvas.after:
+                    Color:
+                        rgba: 0.1, 1, 1, 1
+                    Line:
+                        width: 1
+                        rectangle: self.x, self.y, self.width, self.height
+                text: 'Documents type:'
+                pos_hint: {'x': 0.15, 'y': 0.908}
+                size_hint:(0.15,0.05)
+                color: 0.1, 0.8, 0.7, 1
+            Label:
+                canvas.after:
+                    Color:
+                        rgba: 0.2, 0.8, 0, 1
+                    Line:
+                        width: 1
+                        rectangle: self.x, self.y, self.width, self.height
+
+
+                pos_hint: {'x': 0.4, 'y': 0.908}
+                size_hint:(0.15,0.05)
+                color: 0.1, 0.8, 0.7, 1
+                text: 'Use local sign functions'
+            CheckBox:
+                id: local_sign
+                pos_hint: {'x': 0.52, 'y': 0.91}
+                size_hint:(0.15,0.05)
+#1
+            Label:
+                halign: 'left'
+                text_size: self.size
+                pos_hint: {'x': 0.01, 'y': 0.85}
+                size_hint:(0.15,0.05)
+                text: 'УПД КСЧФ'
+            CheckBox:
+                id: upd_kscf
+                pos_hint: {'x': 0.09, 'y': 0.84}
+                size_hint:(0.15,0.05)
+#2
+            Label:
+                halign: 'left'
+                text_size: self.size
+                pos_hint: {'x': 0.01, 'y': 0.80}
+                size_hint:(0.15,0.05)
+                text: 'УПД СЧФ'
+            CheckBox:
+                id : upd_scf
+                pos_hint: {'x': 0.09, 'y': 0.79}
+                size_hint:(0.15,0.05)
+#3
+            Label:
+                halign: 'left'
+                text_size: self.size
+                pos_hint: {'x': 0.01, 'y': 0.75}
+                size_hint:(0.15,0.05)
+                text: 'УПД КСЧФ ДОП'
+            CheckBox:
+                id: upd_kscf_dop
+                pos_hint: {'x': 0.09, 'y': 0.74}
+                size_hint:(0.15,0.05)
+#4
+            Label:
+                halign: 'left'
+                text_size: self.size
+                pos_hint: {'x': 0.01, 'y': 0.7}
+                size_hint:(0.15,0.05)
+                text: 'УКД СЧФ'
+            CheckBox:
+                id: ukd_scf
+                pos_hint: {'x': 0.09, 'y': 0.69}
+                size_hint:(0.15,0.05)
+#5
+            Label:
+                halign: 'left'
+                text_size: self.size
+                pos_hint: {'x': 0.01, 'y': 0.65}
+                size_hint:(0.15,0.05)
+                text: 'УКД КСЧФ'
+            CheckBox:
+                id: ukd_kscf
+                pos_hint: {'x': 0.09, 'y': 0.64}
+                size_hint:(0.15,0.05)
+#6
+            Label:
+                halign: 'left'
+                text_size: self.size
+                pos_hint: {'x': 0.01, 'y': 0.6}
+                size_hint:(0.15,0.05)
+                text: 'УКД КСЧФ ДОП'
+            CheckBox:
+                id: ukd_kscf_dop
+                pos_hint: {'x': 0.09, 'y': 0.59}
+                size_hint:(0.15,0.05)
+#7
+            Label:
+                halign: 'left'
+                text_size: self.size
+                pos_hint: {'x': 0.23, 'y': 0.85}
+                size_hint:(0.15,0.05)
+                text: 'УПД КСЧФ прос'
+            CheckBox:
+                id: upd_kscf_pros
+                pos_hint: {'x': 0.31, 'y': 0.84}
+                size_hint:(0.15,0.05)
+#8
+            Label:
+                halign: 'left'
+                text_size: self.size
+                pos_hint: {'x': 0.43, 'y': 0.85}
+                size_hint:(0.15,0.05)
+                text: 'УПД КСЧФ марк'
+            CheckBox:
+                id: upd_kscf_mark
+                pos_hint: {'x': 0.51, 'y': 0.84}
+                size_hint:(0.15,0.05)
+#9
+            Label:
+                halign: 'left'
+                text_size: self.size
+                pos_hint: {'x': 0.23, 'y': 0.80}
+                size_hint:(0.15,0.05)
+                text: 'УПД СЧФ прос'
+            CheckBox:
+                id : upd_scf_pros
+                pos_hint: {'x': 0.31, 'y': 0.79}
+                size_hint:(0.15,0.05)
+#10
+            Label:
+                halign: 'left'
+                text_size: self.size
+                pos_hint: {'x': 0.43, 'y': 0.80}
+                size_hint:(0.15,0.05)
+                text: 'УПД СЧФ марк'
+            CheckBox:
+                id : upd_scf_mark
+                pos_hint: {'x': 0.51, 'y': 0.79}
+                size_hint:(0.15,0.05)
+
+#11
+            Label:
+                halign: 'left'
+                text_size: self.size
+                pos_hint: {'x': 0.23, 'y': 0.75}
+                size_hint:(0.15,0.05)
+                text: 'УПД КСЧФ ДОП прос'
+            CheckBox:
+                id: upd_kscf_dop_pros
+                pos_hint: {'x': 0.31, 'y': 0.74}
+                size_hint:(0.15,0.05)
+
+#12
+            Label:
+                halign: 'left'
+                text_size: self.size
+                pos_hint: {'x': 0.43, 'y': 0.75}
+                size_hint:(0.15,0.05)
+                text: 'УПД КСЧФ ДОП марк'
+            CheckBox:
+                id: upd_kscf_dop_mark
+                pos_hint: {'x': 0.51, 'y': 0.74}
+                size_hint:(0.15,0.05)
+#13
+            Label:
+                halign: 'left'
+                text_size: self.size
+                pos_hint: {'x': 0.23, 'y': 0.7}
+                size_hint:(0.15,0.05)
+                text: 'УКД СЧФ прос'
+            CheckBox:
+                id: ukd_scf_pros
+                pos_hint: {'x': 0.31, 'y': 0.69}
+                size_hint:(0.15,0.05)
+#14
+            Label:
+                halign: 'left'
+                text_size: self.size
+                pos_hint: {'x': 0.43, 'y': 0.7}
+                size_hint:(0.15,0.05)
+                text: 'УКД СЧФ марк'
+            CheckBox:
+                id: ukd_scf_mark
+                pos_hint: {'x': 0.51, 'y': 0.69}
+                size_hint:(0.15,0.05)
+
+#15
+            Label:
+                halign: 'left'
+                text_size: self.size
+                pos_hint: {'x': 0.23, 'y': 0.65}
+                size_hint:(0.15,0.05)
+                text: 'УКД КСЧФ прос'
+            CheckBox:
+                id: ukd_kscf_pros
+                pos_hint: {'x': 0.31, 'y': 0.64}
+                size_hint:(0.15,0.05)
+#16
+            Label:
+                halign: 'left'
+                text_size: self.size
+                pos_hint: {'x': 0.43, 'y': 0.65}
+                size_hint:(0.15,0.05)
+                text: 'УКД КСЧФ марк'
+            CheckBox:
+                id: ukd_kscf_mark
+                pos_hint: {'x': 0.51, 'y': 0.64}
+                size_hint:(0.15,0.05)
+#17
+            Label:
+                halign: 'left'
+                text_size: self.size
+                pos_hint: {'x': 0.23, 'y': 0.6}
+                size_hint:(0.15,0.05)
+                text: 'УКД КСЧФ ДОП прос'
+            CheckBox:
+                id: ukd_kscf_dop_pros
+                pos_hint: {'x': 0.31, 'y': 0.59}
+                size_hint:(0.15,0.05)
+#18
+            Label:
+                halign: 'left'
+                text_size: self.size
+                pos_hint: {'x': 0.43, 'y': 0.6}
+                size_hint:(0.15,0.05)
+                text: 'УКД КСЧФ ДОП марк'
+            CheckBox:
+                id: ukd_kscf_dop_mark
+                pos_hint: {'x': 0.51, 'y': 0.59}
+                size_hint:(0.15,0.05)
+
+#Добавляем возможноть выбора отправки, по ИНН КПП либо ящик
+            Label:
+                halign: 'left'
+                text_size: self.size
+                pos_hint: {'x': 0.14, 'y': 0.41}
+                size_hint:(0.15,0.05)
+                text: 'Отправить через ИНН КПП'
+            CheckBox:
+                group: 'check'
+                id: chk_inn_kpp
+                pos_hint: {'x': 0.22, 'y': 0.40}
+                size_hint:(0.15,0.05)
+
+            Label:
+                pos_hint:{'center_x': 0.12, 'center_y': 0.37}
+                text: 'INN'
+                color: 0.1, 0.8, 0.2, 1
+            TextInput:
+                id: inn
+                multiline:False
+                padding_y: [self.height / 2.0 - (self.line_height / 2.0)]
+                foreground_color: (0, 0, 0, 1)
+                canvas.after:
+                    Color:
+                        rgba: 0.1, 0, 0, 1
+                    Line:
+                        width: 1
+                        rectangle: self.x, self.y, self.width, self.height
+                pos_hint: {'x': 0.14, 'y': 0.35}
+                size_hint: (0.2, 0.04)
+            Label:
+                pos_hint:{'center_x': 0.12, 'center_y': 0.27}
+                text: 'KPP'
+                color: 0.1, 0.8, 0.2, 1
+            TextInput:
+                id: kpp
+                multiline:False
+                padding_y: [self.height / 2.0 - (self.line_height / 2.0)]
+                foreground_color: (0, 0, 0, 1)
+                canvas.after:
+                    Color:
+                        rgba: 0.1, 0, 0, 1
+                    Line:
+                        width: 1
+                        rectangle: self.x, self.y, self.width, self.height
+                pos_hint: {'x': 0.14, 'y': 0.25}
+                size_hint: (0.2, 0.04)
+
+
+            Label:
+                halign: 'left'
+                text_size: self.size
+                pos_hint: {'x': 0.45, 'y': 0.42}
+                size_hint:(0.15,0.05)
+                text: 'Отправить через BoxId'
+            CheckBox:
+                group: 'check'
+                id: chk_boxid
+                pos_hint: {'x': 0.55, 'y': 0.40}
+                size_hint:(0.15,0.05)
+
+            Label:
+                pos_hint:{'center_x': 0.43, 'center_y': 0.37}
+                text: 'BoxId'
+                color: 0.1, 0.8, 0.2, 1
+            TextInput:
+                id: receiver_boxid
+                padding_y: [self.height / 2.0 - (self.line_height / 2.0)]
+                multiline:False
+                foreground_color: (0, 0, 0, 1)
+                canvas.after:
+                    Color:
+                        rgba: 0.1, 0, 0, 1
+                    Line:
+                        width: 1
+                        rectangle: self.x, self.y, self.width, self.height
+                pos_hint: {'x': 0.45, 'y': 0.35}
+                size_hint: (0.4, 0.04)
+
+            Label:
+                pos_hint:{'center_x': 0.23, 'center_y': 0.55}
+                text: 'Ящик отправителя'
+                font_size: '25dp'
+                color: 0.19,0.57,0.88, 1
+            TextInput:
+                id: sender_boxid
+                padding_y: [self.height / 2.0 - (self.line_height / 2.0)]
+                multiline:False
+                foreground_color: (0, 0, 0, 1)
+                canvas.after:
+                    Color:
+                        rgba: 0.1, 0, 0, 1
+                    Line:
+                        width: 1
+                        rectangle: self.x, self.y, self.width, self.height
+                pos_hint: {'x': 0.14, 'y': 0.48}
+                size_hint: (0.5, 0.05)
+
+            Button:
+                id: button_test
+                text:'Send'
+                background_color: 0.2, 0.8, 0, 1
+                on_press: root.send()
+                pos_hint: {'x': 0.4, 'y': 0.05}
+                size_hint:(0.1,0.06)
+
+
+
+    # Create 3rd tab
+    TabbedPanelItem:
+        text: 'Update xDE'
+
+    # Create 4rd tab
+    TabbedPanelItem:
+        text: 'Migrate xDE'
+
+    # Create 5rd tab
+    TabbedPanelItem:
+        text: 'REST API'
+
+    # Create 6rd tab
+    TabbedPanelItem:
+        text: 'SOAP API'
+
+    # Create 7rd tab
+    TabbedPanelItem:
+        text: 'Archive API'
+
+    # Create 8rd tab
+    TabbedPanelItem:
+        text: 'Crypto API'
+
+    # Create 9rd tab
+    TabbedPanelItem:
+        text: 'Documentation'

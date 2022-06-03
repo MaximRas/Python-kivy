@@ -1,0 +1,2 @@
+Crypto API method v2/sign
+Tag - CertificateRawData  - Для чего н нужен, если не обязателен и все работает даже если не указать его.
